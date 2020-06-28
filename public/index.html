@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Login page</title>
+    <style>
+
+    body{
+      background-color: rgb(255, 255, 255);
+    }
+  
+    .box {
+        width: 100%;
+        height: auto;
+        border: 3px solid #1d3557;
+        margin-top: 5vh;
+        border-radius: 10px;
+        background-color: #002B7A;
+        color:aliceblue
+      }
+
+    .box .form{
+      width: 95%;
+      margin: 15% 2.5% 0% 2.5%;
+      color:aliceblue
+    }
+
+    .profileLogo{
+      width: 100px;
+      height: 100px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .btn{
+      width: 80%;
+      margin:0 10% 0% 10%;
+    }
+
+
+
+    
+      /* mediA query*/
+      @media(min-width: 768px){
+       
+        .box {
+        width: 40%;
+        margin-left: 30vw;
+        }
+
+        .box .form{
+        width: 70%;
+        margin: 10% 15% 0% 15%;
+        color:aliceblue
+        }
+
+      }
+
+
+    </style>
+
+</head>
+<body>
+    
+
+
+  <!--Log in page-->
+
+<div class="box container" id="loginbox">
+
+    <form action="#" class="form">
+
+        <img src="login.svg" alt="" class="profileLogo">
+
+
+        <div class="form-group" >
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" placeholder="Enter email" id="UId">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" placeholder="Enter password" id="pass">
+        </div>
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"> Remember me
+          </label>
+        </div>
+        <button type="submit" class="btn btn-success" onclick="LogIn()">Login</button>
+
+        <br><br>
+
+      <p>Don't have an account??? <a href="#" onclick="switch2signin()">Sign Up</a></p>
+        
+      </form>
+   
+</div>
+<!--log in page ends--> 
+
+
+
+
+<!--Signup  page-->
+<div class="box container" id="Signinbox">
+
+  <form action="#" class="form">
+
+      <img src="login.svg" alt="" class="profileLogo">
+
+
+      <div class="form-group" >
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" placeholder="Enter email" id="Suid">
+      </div>
+      <div class="form-group" >
+        <label for="uname">Username:</label>
+        <input type="uname" class="form-control" placeholder="Enter username" id="uname">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" placeholder="Enter password" id="Spass">
+      </div>
+      <div class="form-group form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox"> Remember me
+        </label>
+      </div>
+      <button type="submit" class="btn btn-success" onclick="SignIn()">Submit</button>
+
+      <br><br>
+
+    <p>Already have an account??? <a href="#" onclick="switch2login()">Log In</a></p>
+      
+    </form>
+</div>
+<!--Signup  page ends-->
+
+
+
+<!--container details box-->
+<div class="container" id="loggedin"> 
+  
+      <a onclick="deleteAcc()" class="right red waves-effect btn-large" style="margin:3vh">Delete account</a>
+
+  
+      <!--table for details-->
+          <a id="uidLink">Your Notes</a>
+  
+      <div class="container">
+        <a href="#!" onclick="LogOut()"  style="border-radius: 1vh;width: 100%; margin-top: 10vh;">Log Out</a>
+          </div>
+
+<!--Page end-->
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  
+  
+  
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+
+<script src="index.js"></script>
+
+  
+  
+  
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
